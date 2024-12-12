@@ -121,3 +121,14 @@ Antes de rodar o projeto, verifique se você possui os seguintes pré-requisitos
    ```bash
    mvn clean install
    mvn spring-boot:run
+
+
+## 3. Acessar a Aplicação
+
+Com o Spring Boot rodando localmente, você pode acessar os seguintes endpoints da aplicação:
+
+| Endpoint                  | Descrição                                                   | URL                                      |
+|---------------------------|-------------------------------------------------------------|------------------------------------------|
+| **Página de login**        | Página de login da aplicação.                               | `http://localhost:8080/login`            |
+| **API de categorias**      | Endpoint para acessar as categorias na aplicação.          | `http://localhost:8080/api/categorias`   |
+| **API de produtos**        | Endpoint para acessar os produtos cadastrados.             | `http://localhost:8080/api/produtos`     |
