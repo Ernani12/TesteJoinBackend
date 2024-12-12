@@ -112,3 +112,12 @@ Antes de rodar o projeto, verifique se você possui os seguintes pré-requisitos
 
    ```bash
    docker run --name postgres-crud -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=crud_db -p 5432:5432 -d postgres
+
+
+2. **Rodar a Aplicação Spring Boot Localmente**
+
+   Após iniciar o container Docker com o PostgreSQL, execute os seguintes comandos para rodar a aplicação Spring Boot:
+
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
