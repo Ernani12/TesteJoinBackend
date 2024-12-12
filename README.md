@@ -79,3 +79,36 @@ CREATE TABLE produto (
     preco DECIMAL(10, 2) NOT NULL,
     categoria_id INT REFERENCES categoria(id)
 );
+```
+
+## Requisitos para Rodar o Projeto
+
+Antes de rodar o projeto, verifique se você possui os seguintes pré-requisitos instalados:
+
+| Requisito                    | Descrição                                                                                     |
+|------------------------------|------------------------------------------------------------------------------------------------|
+| **Docker**                    | Para rodar o banco de dados PostgreSQL em um container.                                         |
+| **Java 11 ou superior** usei 17 | Para rodar a aplicação Spring Boot.                                                           |
+| **Maven**                     | Para compilar e executar a aplicação Spring Boot.                                              |
+| **PostgreSQL**                | Se não for usar o Docker, é necessário ter o PostgreSQL instalado na máquina.                  |
+
+## Como Funciona
+
+1. **Banco de Dados PostgreSQL no Docker**
+   - O PostgreSQL é executado dentro de um container Docker. O banco é inicializado automaticamente com as tabelas `categoria` e `produto` utilizando o script `init.sql`, que está localizado no diretório `resources` do projeto.
+   
+2. **Spring Boot Local**
+   - O **Spring Boot** roda localmente na sua máquina e se conecta ao PostgreSQL no Docker através do endereço de rede do Docker (`localhost` ou o IP do container, dependendo da configuração).
+   - O Spring Boot possui endpoints RESTful para gerenciar categorias e produtos.
+
+3. **Frontend Angular**
+   - A aplicação Angular (não descrita aqui) consome os endpoints RESTful do Spring Boot para exibir e gerenciar categorias e produtos na interface do usuário.
+
+## Comandos para Rodar a Aplicação
+
+1. **Rodar o PostgreSQL com Docker**
+
+   Para iniciar o banco de dados PostgreSQL dentro de um container Docker, execute o seguinte comando:
+
+   ```bash
+   docker run --name postgres-crud -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=crud_db -p 5432:5432 -d postgres
