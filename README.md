@@ -1,4 +1,4 @@
-# README - Aplicação Backend com Spring Boot e PostgreSQL no Docker
+# Aplicação Backend com Spring Boot/ AngularFront e PostgreSQL no Docker, de Produto na Join
 
 Este projeto é uma aplicação backend desenvolvida com **Spring Boot** e **PostgreSQL** como banco de dados, com o **PostgreSQL** rodando em um container Docker. A aplicação oferece uma API RESTful para gerenciar **categorias** e **produtos** e possui autenticação básica. O frontend é desenvolvido separadamente utilizando **Angular**.
 
