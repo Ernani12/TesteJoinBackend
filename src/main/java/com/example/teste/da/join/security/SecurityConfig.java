@@ -10,6 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class SecurityConfig {
@@ -27,7 +32,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()) // Desabilita CSRF (necessário para APIs REST)
-            .authorizeHttpRequests(auth -> auth
+
+        .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/auth/login", "/css/**", "/js/**", "/h2-console/**").permitAll() // Permite login, recursos estáticos e H2 Console
             .anyRequest().authenticated() // Requer autenticação para outras rotas
             )
@@ -45,5 +51,34 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOriginPattern("*"); // Permite todas as origens
+        configuration.addAllowedMethod("*");       // Permite todos os métodos (GET, POST, etc.)
+        configuration.addAllowedHeader("*");       // Permite todos os cabeçalhos
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                // Configuração global de CORS para todos os endpoints
+                registry.addMapping("/**") // Permite CORS para todos os endpoints
+                        .allowedOrigins("http://localhost:4200") // Permite apenas esta origem
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite métodos necessários
+                        .allowedHeaders("*") // Permite todos os cabeçalhos
+                        .allowCredentials(true); // Permite credenciais como cookies, headers autorizados
+            }
+        };
     }
 }
