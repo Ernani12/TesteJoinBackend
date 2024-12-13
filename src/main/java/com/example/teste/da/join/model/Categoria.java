@@ -1,6 +1,5 @@
 package com.example.teste.da.join.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -21,7 +20,7 @@ public class Categoria {
     private Long id;
     private String nome;
     private String descricao;
-    private LocalDateTime dataCriacao = LocalDateTime.now();
+    private String dataCriacao;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Produto> produtos;
