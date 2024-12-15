@@ -2,6 +2,8 @@ package com.example.teste.da.join.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,13 +19,23 @@ import lombok.Setter;
 @Setter
 public class Produto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String descricao;
     private BigDecimal preco;
 
+    public Produto(){}
+
+    public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.categoria = categoria;
+    }
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
+    @JsonBackReference // Impede a serialização recursiva da categoria
     private Categoria categoria;
 }
