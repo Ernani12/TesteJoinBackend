@@ -1,5 +1,6 @@
 package com.example.teste.da.join.security;
 
+import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class SecurityConfig {
@@ -32,11 +31,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()) // Desabilita CSRF (necessário para APIs REST)
-
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/auth/login", "/css/**", "/js/**", "/h2-console/**").permitAll() // Permite login, recursos estáticos e H2 Console
-            .anyRequest().authenticated() // Requer autenticação para outras rotas
+            .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/categorias/listar").permitAll() // Permite acesso ao endpoint de categorias
+            .requestMatchers("/api/auth/login/**", "/css/**", "/js/**", "/h2-console/**",
+                                 "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui/index.html/",
+                                 "/webjars/**").permitAll() // Permite acesso a rotas públicas
+                .anyRequest().authenticated() // Requer autenticação para outras rotas
             )
+            .cors() // Ativa o suporte a CORS
+            .and()
             .headers(headers -> headers.disable()) // Desativa configurações de cabeçalhos
             .logout(logout -> logout.permitAll()); // Permite logout público
 
@@ -55,30 +58,14 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOriginPattern("*"); // Permite todas as origens
-        configuration.addAllowedMethod("*");       // Permite todos os métodos (GET, POST, etc.)
-        configuration.addAllowedHeader("*");       // Permite todos os cabeçalhos
-        configuration.setAllowCredentials(true);
-
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Permite apenas o frontend
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Métodos permitidos
+        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Cabeçalhos permitidos
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", corsConfig); // Aplica configuração a todos os endpoints
+
         return source;
-    }
-
-
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                // Configuração global de CORS para todos os endpoints
-                registry.addMapping("/**") // Permite CORS para todos os endpoints
-                        .allowedOrigins("http://localhost:4200") // Permite apenas esta origem
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Permite métodos necessários
-                        .allowedHeaders("*") // Permite todos os cabeçalhos
-                        .allowCredentials(true); // Permite credenciais como cookies, headers autorizados
-            }
-        };
     }
 }
