@@ -37,7 +37,11 @@ public class SecurityConfig {
             .requestMatchers("/api/categorias/deleteC/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/categorias/listarid/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/categorias/updateC/**").permitAll() // Permitir acesso ao endpoint DELETE
-
+            
+            .requestMatchers("/api/produtos/listar").permitAll() // Permite acesso ao endpoint de categorias
+            .requestMatchers("/api/produtos/listarid/**").permitAll() // Permitir acesso ao endpoint DELETE
+            .requestMatchers("/api/produtos/salvarP").permitAll() // Permite acesso ao endpoint de categorias
+            .requestMatchers("/api/produtos/deleteP/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/auth/login/**", "/css/**", "/js/**", "/h2-console/**",
                                  "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui/index.html/",
                                  "/webjars/**").permitAll() // Permite acesso a rotas públicas
