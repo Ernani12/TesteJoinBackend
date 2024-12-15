@@ -33,7 +33,7 @@ public class CategoriaController {
         return categoriaService.listarCategorias();
     }
 
-    @PostMapping("/SalvaC")
+    @PostMapping("/SalvarC")
     public ResponseEntity<Categoria> salvarCategoria(@RequestBody Categoria categoria) {
         Categoria categoriaSalva = categoriaService.salvarCategoria(categoria);
         return ResponseEntity.ok(categoriaSalva);

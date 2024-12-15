@@ -33,6 +33,8 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable()) // Desabilita CSRF (necessário para APIs REST)
             .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/categorias/listar").permitAll() // Permite acesso ao endpoint de categorias
+            .requestMatchers("/api/categorias/SalvarC").permitAll() // Permite acesso ao endpoint de categorias
+
             .requestMatchers("/api/auth/login/**", "/css/**", "/js/**", "/h2-console/**",
                                  "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui/index.html/",
                                  "/webjars/**").permitAll() // Permite acesso a rotas públicas
