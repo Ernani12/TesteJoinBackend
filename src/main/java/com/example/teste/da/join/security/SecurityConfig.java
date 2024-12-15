@@ -34,6 +34,9 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
             .requestMatchers("/api/categorias/listar").permitAll() // Permite acesso ao endpoint de categorias
             .requestMatchers("/api/categorias/SalvarC").permitAll() // Permite acesso ao endpoint de categorias
+            .requestMatchers("/api/categorias/deleteC/**").permitAll() // Permitir acesso ao endpoint DELETE
+            .requestMatchers("/api/categorias/listarid/**").permitAll() // Permitir acesso ao endpoint DELETE
+            .requestMatchers("/api/categorias/updateC/**").permitAll() // Permitir acesso ao endpoint DELETE
 
             .requestMatchers("/api/auth/login/**", "/css/**", "/js/**", "/h2-console/**",
                                  "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui/index.html/",
