@@ -51,7 +51,7 @@ public class CategoriaController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("listarid/{id}")
     public ResponseEntity<Categoria> buscarPorId(@PathVariable Long id) {
         return categoriaService.buscarPorId(id)
                 .map(ResponseEntity::ok)
