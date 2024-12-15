@@ -39,6 +39,10 @@ public class DataInitializer implements CommandLineRunner {
         Produto produto5 = new Produto("Cerveja Skol Lata", "Cerveja Skol 350ml.", new BigDecimal("2.50"),  categoria5 );
        
         produtoRepository.save(produto1);      // Salva o produto com a categoria associada
+        produtoRepository.save(produto2);      // Salva o produto com a categoria associada
+        produtoRepository.save(produto3);      // Salva o produto com a categoria associada
+        produtoRepository.save(produto4);      // Salva o produto com a categoria associada
+        produtoRepository.save(produto5);      // Salva o produto com a categoria associada
 
         
        
