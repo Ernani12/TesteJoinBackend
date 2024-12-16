@@ -33,6 +33,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()) // Desabilita CSRF (necessário para APIs REST)
             .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/api/categorias/**").permitAll() // Liberar o endpoint
             .requestMatchers("/api/categorias/listar").permitAll() // Permite acesso ao endpoint de categorias
             .requestMatchers("/api/categorias/SalvarC").permitAll() // Permite acesso ao endpoint de categorias
             .requestMatchers("/api/categorias/deleteC/**").permitAll() // Permitir acesso ao endpoint DELETE
