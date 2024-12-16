@@ -7,7 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
-import com.example.teste.da.join.DTO.*;
+
+import com.example.teste.da.join.DTO.AuthRequest;
 import com.example.teste.da.join.model.AuthResponse;
 
 @RestController
@@ -20,29 +21,45 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
+    // Endpoint de login que recebe as credenciais e tenta autenticar o usuário
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
-    try {
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
+        try {
 
-        if (authentication.isAuthenticated()) {
-            // Autenticação bem-sucedida
-            AuthResponse response = new AuthResponse("Login successful!", "some-jwt-token-if-needed");
-            return ResponseEntity.ok(response); // Retorna o objeto dentro de um ResponseEntity com status 200
-        } else {
-            // Caso improvável de falha (em teoria, a exceção deve capturar isso)
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                                 .body(new AuthResponse("Autenticação falhou.", null));
+            Authentication authentication = authenticateUser(authRequest);
+
+            if (authentication.isAuthenticated()) {
+                return buildSuccessResponse(); // Retorna resposta de sucesso se a autenticação for bem-sucedida
+            } else {
+                return buildUnauthorizedResponse("Autenticação falhou."); // Retorna resposta de erro caso a autenticação falhe
+            }
+        } catch (AuthenticationException e) {
+            return buildUnauthorizedResponse("Credenciais inválidas"); // Retorna resposta de erro com a mensagem de falha
         }
-    } catch (AuthenticationException e) {
-        // Credenciais inválidas
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                             .body(new AuthResponse("Credenciais inválidas", null));
+    }
+
+    // Método para autenticar o usuário com base nas credenciais fornecidas
+    private Authentication authenticateUser(AuthRequest authRequest) {
+
+        UsernamePasswordAuthenticationToken authenticationToken = 
+            new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword());
+        
+        return authenticationManager.authenticate(authenticationToken);
+    }
+
+    // Método para construir a resposta de sucesso quando a autenticação for bem-sucedida
+    private ResponseEntity<AuthResponse> buildSuccessResponse() {
+
+        AuthResponse response = new AuthResponse("Login successful!", "some-jwt-token-if-needed");
+        
+        return ResponseEntity.ok(response);
+    }
+
+    // Método para construir a resposta de erro quando a autenticação falhar
+    private ResponseEntity<AuthResponse> buildUnauthorizedResponse(String message) {
+        
+        AuthResponse response = new AuthResponse(message, null);
+        
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 }
-
-}
-
-
