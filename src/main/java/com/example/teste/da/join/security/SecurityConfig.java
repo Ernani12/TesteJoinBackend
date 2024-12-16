@@ -28,6 +28,7 @@ public class SecurityConfig {
         );
     }
 
+    @SuppressWarnings("removal")
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable()) // Desabilita CSRF (necessário para APIs REST)
@@ -49,10 +50,9 @@ public class SecurityConfig {
                                  "/webjars/**").permitAll() // Permite acesso a rotas públicas
                 .anyRequest().authenticated() // Requer autenticação para outras rotas
             )
-            .cors() // Ativa o suporte a CORS
-            .and()
             .headers(headers -> headers.disable()) // Desativa configurações de cabeçalhos
-            .logout(logout -> logout.permitAll()); // Permite logout público
+            .logout(logout -> logout.permitAll()) // Permite logout público
+            .cors(); // Ativa o suporte a CORS
 
         return http.build();
     }
