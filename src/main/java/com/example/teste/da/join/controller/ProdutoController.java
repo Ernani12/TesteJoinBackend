@@ -1,15 +1,20 @@
 package com.example.teste.da.join.controller;
 
+import com.example.teste.da.join.DTO.CategoriaDTO;
 import com.example.teste.da.join.DTO.ProdutoDTO;
 import com.example.teste.da.join.model.Categoria;
 import com.example.teste.da.join.model.Produto;
 import com.example.teste.da.join.repository.CategoriaRepository;
+import com.example.teste.da.join.repository.ProdutoRepository;
 import com.example.teste.da.join.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -20,6 +25,7 @@ public class ProdutoController {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
 
     @GetMapping("/listar")
     public List<Produto> listarProdutos() {
@@ -62,5 +68,24 @@ public class ProdutoController {
     @GetMapping("/listarid/{id}")
     public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(produtoService.buscarPorId(id));
+    }
+
+
+    @GetMapping("/{id}/categoria/nome")
+    public ResponseEntity<Map<String, String>> getCategoriaNomeByProdutoId(@PathVariable Long id) {
+        String categoriaNome = produtoService.getCategoriaNomeByProdutoId(id);
+        if (categoriaNome == null) {
+            return ResponseEntity.notFound().build();  // Retorna 404 se não encontrar a categoria
+        }
+        return ResponseEntity.ok(Collections.singletonMap("nome", categoriaNome));  // Retorna um objeto JSON com a chave "nome"
+    }
+    
+    @GetMapping("/{id}/categoria/id")
+    public ResponseEntity<Map<String, String>> getCategoriaIdByProdutoId(@PathVariable Long id) {
+        String categoriaId = produtoService.getCategoriaIdByProdutoId(id);
+        if (categoriaId == null) {
+            return ResponseEntity.notFound().build();  // Retorna 404 se não encontrar a categoria
+        }
+        return ResponseEntity.ok(Collections.singletonMap("id", categoriaId));  // Retorna um objeto JSON com a chave "id"
     }
 }

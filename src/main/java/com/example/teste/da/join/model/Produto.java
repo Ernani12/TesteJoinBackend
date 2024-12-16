@@ -3,6 +3,7 @@ package com.example.teste.da.join.model;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,5 +38,6 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     @JsonBackReference // Impede a serialização recursiva da categoria
+
     private Categoria categoria;
 }
