@@ -13,5 +13,12 @@ public class ProdutoDTO {
     private BigDecimal preco;
     private Long categoriaId;
 
+    public ProdutoDTO(String nome, String descricao, BigDecimal preco, Long categoriaId) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.categoriaId = categoriaId;
+    }
+
     // Getters e Setters
 }

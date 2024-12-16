@@ -47,4 +47,8 @@ public class Produto {
         this.descricao = descricao;
         this.categoria = categoria;
     }
+
+    public Produto(String string, String string2, double d, Categoria categoria2) {
+        //TODO Auto-generated constructor stub
+    }
 }
