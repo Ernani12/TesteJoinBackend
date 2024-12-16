@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -32,23 +31,13 @@ public class DataInitializer implements CommandLineRunner {
         categoriaRepository.saveAll(List.of(categoria1, categoria2, categoria3, categoria4, categoria5));
 
         // Criar e associar produtos às categorias
-        Produto produto1 = new Produto("Smartphone Samsung Galaxy", "Smartphone de última geração da Samsung.", new BigDecimal("2500.99"), categoria1 );
-        Produto produto2 = new Produto("Geladeira Brastemp", "Geladeira de 400L da Brastemp.", new BigDecimal("2899.00"), categoria2 );
-        Produto produto3 = new Produto("Sofá de 3 lugares", "Sofá de 3 lugares em tecido.", new BigDecimal("1200.00"), categoria3 );
-        Produto produto4 = new Produto("Camiseta Polo", "Camiseta Polo masculina de algodão.", new BigDecimal("99.90"), categoria4 );
-        Produto produto5 = new Produto("Cerveja Skol Lata", "Cerveja Skol 350ml.", new BigDecimal("2.50"),  categoria5 );
-       
-        produtoRepository.save(produto1);      // Salva o produto com a categoria associada
-        produtoRepository.save(produto2);      // Salva o produto com a categoria associada
-        produtoRepository.save(produto3);      // Salva o produto com a categoria associada
-        produtoRepository.save(produto4);      // Salva o produto com a categoria associada
-        produtoRepository.save(produto5);      // Salva o produto com a categoria associada
+        Produto produto1 = new Produto("Smartphone Samsung Galaxy", "Smartphone de última geração da Samsung.", new BigDecimal("2500.99"), categoria1);
+        Produto produto2 = new Produto("Geladeira Brastemp", "Geladeira de 400L da Brastemp.", new BigDecimal("2899.00"), categoria2);
+        Produto produto3 = new Produto("Sofá de 3 lugares", "Sofá de 3 lugares em tecido.", new BigDecimal("1200.00"), categoria3);
+        Produto produto4 = new Produto("Camiseta Polo", "Camiseta Polo masculina de algodão.", new BigDecimal("99.90"), categoria4);
+        Produto produto5 = new Produto("Cerveja Skol Lata", "Cerveja Skol 350ml.", new BigDecimal("2.50"), categoria5);
 
-        
-       
-
-
-        
-
+        // Salvar os produtos no banco de dados
+        produtoRepository.saveAll(List.of(produto1, produto2, produto3, produto4, produto5));
     }
 }

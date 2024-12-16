@@ -1,18 +1,15 @@
 package com.example.teste.da.join.controller;
 
-import com.example.teste.da.join.DTO.CategoriaDTO;
 import com.example.teste.da.join.DTO.ProdutoDTO;
 import com.example.teste.da.join.model.Categoria;
 import com.example.teste.da.join.model.Produto;
 import com.example.teste.da.join.repository.CategoriaRepository;
-import com.example.teste.da.join.repository.ProdutoRepository;
 import com.example.teste.da.join.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.Collections;
 

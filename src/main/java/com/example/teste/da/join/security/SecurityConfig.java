@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.http.HttpMethod;
 
 @Configuration
 public class SecurityConfig {
@@ -39,10 +38,10 @@ public class SecurityConfig {
             .requestMatchers("/api/categorias/deleteC/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/categorias/listarid/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/categorias/updateC/**").permitAll() // Permitir acesso ao endpoint DELETE
+            .requestMatchers("/api/produtos/salvarP").permitAll()
             .requestMatchers("/api/produtos/listar").permitAll() // Permite acesso ao endpoint de categorias
             .requestMatchers("/api/produtos/listarid/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/produtos/**").permitAll() // Liberar o endpoint
-            .requestMatchers("/api/produtos/salvarP").permitAll() // Permite acesso ao endpoint de categorias
             .requestMatchers("/api/produtos/deleteP/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/produtos/updateP/**").permitAll() // Permitir acesso ao endpoint DELETE
             .requestMatchers("/api/auth/login/**", "/css/**", "/js/**", "/h2-console/**",
