@@ -12,33 +12,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String nome;
     private String descricao;
     private String dataCriacao;
 
+    // Construtor padrão
+    public Categoria() {}
 
-    public Categoria(){}
-
+    // Construtor com parâmetros
     public Categoria(String nome, String descricao, String dataCriacao) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataCriacao = dataCriacao;
     }
 
-
-
-
+    // Relacionamento OneToMany com a classe Produto
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     @JsonManagedReference // Serializa normalmente os produtos
-    private List<Produto> produtos= new ArrayList<>();;
+    private List<Produto> produtos = new ArrayList<>();
 }
