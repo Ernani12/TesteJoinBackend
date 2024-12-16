@@ -3,7 +3,6 @@ package com.example.teste.da.join.model;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,6 +38,13 @@ public class Produto {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
+        this.categoria = categoria;
+    }
+
+    // Construtor com parâmetros, sem o preço
+    public Produto(String nome, String descricao, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
         this.categoria = categoria;
     }
 }
