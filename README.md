@@ -72,7 +72,7 @@ Backend: http://localhost:8080
 Frontend: http://localhost:4200
 ```
 
-### 9 utilizar usuario e password para um usuario padrao login
+### 9. utilizar usuario e password para um usuario padrao login
 
 ```bash
     user
