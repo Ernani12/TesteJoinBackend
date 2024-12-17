@@ -19,55 +19,62 @@
 Certifique-se de que o Java 17 esteja instalado em seu sistema. Para verificar a instalação, utilize:
 
 ```bash
-java -version
+  java -version
+```
 
+### 2 .Instalar Docker Desktop ou CLI (Linux)
+Baixe e instale o Docker para rodar o banco de dados PostgreSQL.
 
-2. Configuração do PostgreSQL com Docker
-Execute o comando abaixo para rodar o PostgreSQL no Docker:
+Rodar PostgreSQL no Docker
+Execute o seguinte comando para inicializar o banco de dados:
 
-bash
-Copiar código
-docker run --name postgres-crud -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=crud_db -p 5432:5432 -d postgres
-POSTGRES_USER: Nome do usuário administrador.
-POSTGRES_PASSWORD: Senha do banco.
-POSTGRES_DB: Nome do banco de dados.
-Para verificar o container em execução:
+```bash
+    docker run --name postgres-crud -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=crud_db -p 5432:5432 -d postgres
+```
+### 3. Instalar Maven
+Certifique-se de ter o Maven instalado. Verifique com o comando:
 
-bash
-Copiar código
-docker ps
-3. Compilar e Executar o Backend Spring Boot
-Navegue até a pasta backend do projeto e execute os comandos:
+```bash
+mvn -v
+```
 
-bash
-Copiar código
-cd backend
+### 4. Compilar e Rodar a Aplicação Spring Boot
+Execute os seguintes comandos na pasta do projeto:
+
+```bash
 mvn clean install
 mvn spring-boot:run
-A API será iniciada em:
+```
 
-http://localhost:8080
+### 5. Instalar Angular CLI
+Se você ainda não possui o Angular CLI, instale com o comando:
 
-4. Configurar e Rodar o Frontend Angular
-4.1 Instalar o Angular CLI
-Se ainda não tiver o Angular CLI instalado, execute:
-
-bash
-Copiar código
+```bash
 npm install -g @angular/cli
-4.2 Instalar Dependências
-Na pasta do frontend, instale as dependências do projeto:
+```
+### 6 Baixar Dependências do Frontend
+Na pasta do frontend Angular, execute:
 
-bash
-Copiar código
-cd frontend
+```bash
 npm install
-4.3 Executar o Frontend
-Inicie o servidor de desenvolvimento com:
+```
 
-bash
-Copiar código
+### 7. Rodar o Frontend Angular
+Execute o seguinte comando para iniciar o servidor de desenvolvimento:
+
+```bash
 ng serve
-A aplicação Angular estará disponível em:
+```
+### 8. Acessar a Aplicação
 
-http://localhost:4200
+```bash
+Backend: http://localhost:8080
+Frontend: http://localhost:4200
+```
+
+### 9 utilizar usuario e password para um usuario padrao login
+
+```bash
+    user
+    passowrd
+    
