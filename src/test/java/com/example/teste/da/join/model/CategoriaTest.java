@@ -1,12 +1,11 @@
-package com.example.teste.da.join;
+package com.example.teste.da.join.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.example.teste.da.join.model.Categoria;
-import com.example.teste.da.join.model.Produto;
+
 
 public class CategoriaTest {
 

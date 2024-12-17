@@ -1,6 +1,5 @@
-package com.example.teste.da.join;
+package com.example.teste.da.join.controller;
 
-import com.example.teste.da.join.controller.CategoriaController;
 import com.example.teste.da.join.model.Categoria;
 import com.example.teste.da.join.services.CategoriaService;
 import org.junit.jupiter.api.BeforeEach;
