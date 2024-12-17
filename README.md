@@ -69,7 +69,6 @@ ng serve
 ### 8. Acessar a Aplicação
 
 ```bash
-Backend: http://localhost:8080
 Frontend: http://localhost:4200
 ```
 
