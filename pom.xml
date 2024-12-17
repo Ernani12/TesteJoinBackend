@@ -50,19 +50,15 @@
             <version>2.1.0</version> <!-- Ajuste para a versão mais recente -->
         </dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.6.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope> <!-- DevTools só será incluído no ambiente de desenvolvimento -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
