@@ -1,5 +1,6 @@
 # 🚀 Aplicação Backend com Spring Boot, Angular e PostgreSQL no Docker
 
+
 ## Tecnologias Utilizadas
 
 - **Java 17**
@@ -12,7 +13,7 @@
 
 ---
 
-## Passos para Configuração
+## 🚀 Passos para Configuração do Projeto
 
 ### 1. Instalação do Java 17
 
@@ -78,4 +79,7 @@ Frontend: http://localhost:4200
 user
 passowrd
 ```
-    
+
+--------------------------------------------------------------------------------------------------------------------
+
+
