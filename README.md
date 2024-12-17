@@ -44,7 +44,6 @@ mvn -v
 Execute os seguintes comandos na pasta do projeto:
 
 ```bash
-mvn clean install
 mvn spring-boot:run
 ```
 
@@ -79,6 +78,12 @@ Frontend: http://localhost:4200
 ```bash
 user
 passowrd
+```
+
+### 10. testes ou pode rodar os testes na mao
+
+```bash
+mvn clean install
 ```
 
 --------------------------------------------------------------------------------------------------------------------
